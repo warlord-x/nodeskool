@@ -1,21 +1,20 @@
 var myclient = require('./myclient');
-var collectedData;
-myclient(process.argv[2],collected1);
+var async = require('async');
 
-
-
-function displayStreamData(err,data){
-  console.log(data.length);
-  console.log(data.toString());
-}
-function collected1(err,data){
-  console.log(data.toString());
-  myclient(process.argv[3],collected2);
-}
-function collected2(err,data){
-  console.log(data.toString());
-  myclient(process.argv[4],collected);
-}
 function collected(err,data){
+  //console.log("collected callled::"+data.toString());
   console.log(data.toString());
 }
+
+//Set up our queue
+var queue = async.queue(function(url, collectedX) {
+  //console.log('calling url:'+url);
+    myclient(url,collectedX);
+
+}, 1); //Only allow 1 copy requests at a time so we don't flood the network
+
+
+
+queue.push(process.argv[2],collected);
+queue.push(process.argv[3],collected);
+queue.push(process.argv[4],collected);

@@ -1,5 +1,4 @@
 function getData(url,parentCallBack){
-
   var http = require('http');
 
   http.get(url,urlCallBack(parentCallBack));
