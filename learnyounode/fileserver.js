@@ -5,6 +5,6 @@ function serveFile(port,filepath){
     var mysrcstream = myfs.createReadStream(filepath);
     mysrcstream.pipe(response);
   })
-  server.listen(port)
+  server.listen(port);
 }
 module.exports = serveFile;

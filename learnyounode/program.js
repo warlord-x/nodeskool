@@ -1,2 +1,2 @@
-var myfileserver = require('./fileserver.js')
-myfileserver(process.argv[2],process.argv[3]);
+var myuppercaseserver = require('./uppercaseserver.js')
+myuppercaseserver(process.argv[2]);
